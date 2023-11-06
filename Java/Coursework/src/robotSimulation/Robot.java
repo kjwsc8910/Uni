@@ -8,11 +8,11 @@ package robotSimulation;
  */
 public class Robot {
 
-	private static int robots = 0;
+	private static int robotCount = 0;
 	private int id, x, y;
 	
 	public Robot(int x, int y) {
-		id = ++robots;
+		id = ++robotCount;
 		this.x = x;
 		this.y = y;
 	}
@@ -24,7 +24,27 @@ public class Robot {
 		// TODO Auto-generated method stub
 
 		Robot rob = new Robot(2, 4);
-		System.out.print(rob.id);
-	}
+		Robot robot = new Robot(4, 8);
+		System.out.print(rob.toString() + "\n");
+		System.out.print(robot.toString() + "\n");
+		System.out.print(Robot.robotCount);
 
+	}
+	
+	public String toString() {
+		return "Robot " + this.id + " is at " + this.x + ", " +this.y;
+	}
+	
+	public static int robotCount() {
+		return robotCount;
+	}
+	
+	public int x() {
+		return x;
+	}
+	
+	public int y() {
+		return y;
+	}
+	
 }
