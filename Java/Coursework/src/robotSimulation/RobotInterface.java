@@ -22,7 +22,7 @@ public class RobotInterface {
     	
         char ch = ' ';
         do {
-        	System.out.print("Enter (A)dd Robot, get (I)nformation or e(X)it > ");
+        	System.out.print("Enter (A)dd Robot, get (I)nformation, (D)isplay canvas or e(X)it > ");
         	ch = s.next().charAt(0);
         	s.nextLine();
         	switch (ch) {
@@ -34,6 +34,10 @@ public class RobotInterface {
         		case 'i' :
         					System.out.print(myArena.toString() + "\n");
             				break;
+        		case 'D' :
+        		case 'd' :
+        					doDisplay(); // display the canvas
+        					break;
         		case 'x' : 	ch = 'X';				// when X detected program ends
         					break;
         	}
@@ -44,6 +48,15 @@ public class RobotInterface {
     
 	public static void main(String[] args) {
 		RobotInterface r = new RobotInterface();	// just call the interface
+	}
+	
+	/**
+	 * Display the robot arena on the console
+	 */
+	void doDisplay() {
+		ConsoleCanvas canvas = new ConsoleCanvas(myArena.sizeX() + 2, myArena.sizeY() + 2, "31000799");
+		myArena.showRobots(canvas);
+		System.out.println(canvas.toString());
 	}
 
 }

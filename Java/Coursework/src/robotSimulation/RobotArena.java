@@ -12,6 +12,11 @@ public class RobotArena {
 	private int id, sizeX, sizeY;
 	private Robot[] robots = new Robot[5];
 	
+	/**
+	 * A constructor to set up the arena
+	 * @param sizeX of arena
+	 * @param sizeY of arena
+	 */
 	public RobotArena (int sizeX, int sizeY) {
 		this.id = ++arenas;
 		this.sizeX = sizeX;
@@ -22,31 +27,56 @@ public class RobotArena {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		
-		RobotArena arena = new RobotArena(10, 20);
+		RobotArena arena = new RobotArena(20, 10);
 		arena.addRobot();
 		arena.addRobot();
 		System.out.print(arena.toString());
 		
 	}
-		
+	
+	/**
+	 * Adds a robot to the arena in a random location
+	 */
 	public void addRobot() {
-		boolean searching = true;
+		boolean found = false;
 		int x = 0, y = 0;
-		while(searching) {
-			searching = false;
-			x = 1 + (int)(Math.random() * ((sizeX - 1) + 1));
-			y = 1 + (int)(Math.random() * ((sizeY - 1) + 1));
-			for (int i = 0; i < robots.length; ++i) {
-				if(robots[i] != null) if(robots[i].x() == x && robots[i].y() == y) searching = true;
-			} 
+		while(!found) {
+			x = (int)(Math.random() * (sizeX));
+			y = (int)(Math.random() * (sizeY));
+			found = isFree(x, y);
 		}
 		
 		
 		robots[Robot.robotCount()] = new Robot(x, y);
+		robots[Robot.robotCount() - 1].setArena(this);
 	}
 	
+	/**
+	 * show all the Robots in the interface
+	 * @param c the canvas in which Robots are shown
+	 */
+	public void showRobots (ConsoleCanvas c) {
+		for (int i = 0; i < robots.length; ++i) {
+			if(robots[i] != null) robots[i].displayRobot(c);
+		}
+	}
+	
+	/**
+	 * Checks if a robot is in a location
+	 * @param x Position
+	 * @param y Position
+	 * @return Boolean
+	 */
+	public boolean isFree(int x, int y) {
+		for (int i = 0; i < robots.length; ++i) {
+			if(robots[i] != null) if(robots[i].x() == x && robots[i].y() == y) return false;
+		}
+		return true;
+	}
+	
+	/**
+	 * Converts the Arena and its Robots information into String Format
+	 */
 	public String toString() {
 		String output = "Arena " + this.id + " is " + this.sizeX + "x" + this.sizeY;
 		for (int i = 0; i < robots.length; ++i) {
@@ -55,4 +85,19 @@ public class RobotArena {
 		return output;
 	}
 
+	/**
+	 * Makes sizeX a readable variable to other objects
+	 * @return
+	 */
+	public int sizeX() {
+		return this.sizeX;
+	}
+	
+	/**
+	 * Makes sizeY a readable variable to other objects
+	 * @return
+	 */
+	public int sizeY() {
+		return this.sizeY;
+	}
 }
