@@ -10,7 +10,7 @@ public class RobotArena {
 	
 	private static int arenas = 0;
 	private int id, sizeX, sizeY;
-	private Robot[] robots = new Robot[5];
+	private Robot[] robots = new Robot[16];
 	
 	/**
 	 * A constructor to set up the arena
@@ -47,7 +47,7 @@ public class RobotArena {
 		}
 		
 		
-		robots[Robot.robotCount()] = new Robot(x, y);
+		robots[Robot.robotCount()] = new Robot(x, y, Direction.randomDirection());
 		robots[Robot.robotCount() - 1].setArena(this);
 	}
 	
@@ -72,6 +72,34 @@ public class RobotArena {
 			if(robots[i] != null) if(robots[i].x() == x && robots[i].y() == y) return false;
 		}
 		return true;
+	}
+	
+	/**
+	 * Runs tryToMove on all robots
+	 */
+	public void moveAllRobots() {
+		for (int i = 0; i < robots.length; ++i) {
+			if(robots[i] != null) robots[i].tryToMove();
+		}
+	}
+	
+	/**
+	 * Moves all robots then displays them 10 times
+	 * @param c
+	 * @param x
+	 */
+	public void animate(ConsoleCanvas c, int x) {
+		for (int i = 0; i < x; ++i) {
+			c = new ConsoleCanvas(sizeX() + 2, sizeY() + 2, "31000799");
+			moveAllRobots();
+			showRobots(c);
+			System.out.print(c.toString());
+			try {
+				Thread.sleep(200);
+			} catch(InterruptedException e) {
+				Thread.currentThread().interrupt();
+			}
+		}
 	}
 	
 	/**

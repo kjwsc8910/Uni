@@ -54,7 +54,7 @@ public class ConsoleCanvas {
 	}
 	
 	/**
-	 * Returns the canvas in a string form
+	 * @Returns the canvas in a string form
 	 */
 	public String toString() {
 		String result = "";
