@@ -1,4 +1,4 @@
 Arena 2 is 8x8
 Robot 1 is at 0, 0 Facing South
 Robot 2 is at 7, 2 Facing South
-Robot 3 is at 2, 3 Facing South
+Robot 3 is at 2, 3 Facing East

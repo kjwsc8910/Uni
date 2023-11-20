@@ -94,7 +94,6 @@ public class RobotInterface {
 	}
 	
 	void loadArena() {
-		Scanner strScan;
 		ArrayList<Integer> data = new ArrayList<Integer>();
 		textFile.openFile();
 		textFile.getNextline();
@@ -107,10 +106,15 @@ public class RobotInterface {
 	    while(textFile.getNextline()) {
 	    	p = Pattern.compile("\\d+");
 		    m = p.matcher(textFile.nextLine());
+		    data.clear();
 		    while(m.find()) {
 		        data.add(Integer.parseInt(m.group()));
 		    }
-		    myArena.addRobot();
+		    if(textFile.nextLine().contains("North")) myArena.addRobot(data.get(0), data.get(1), Direction.North);
+	    	if(textFile.nextLine().contains("East")) myArena.addRobot(data.get(0), data.get(1), Direction.East);
+    		if(textFile.nextLine().contains("South")) myArena.addRobot(data.get(0), data.get(1), Direction.South);
+			if(textFile.nextLine().contains("West")) myArena.addRobot(data.get(0), data.get(1), Direction.West);
+		    
 	    }
 	}
 
