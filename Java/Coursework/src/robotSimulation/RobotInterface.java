@@ -93,6 +93,9 @@ public class RobotInterface {
 		System.out.println(canvas.toString());
 	}
 	
+	/**
+	 * Reads a .txt file and creates an arena and adds robots to match
+	 */
 	void loadArena() {
 		ArrayList<Integer> data = new ArrayList<Integer>();
 		textFile.openFile();

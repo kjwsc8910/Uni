@@ -51,6 +51,12 @@ public class RobotArena {
 		robots[Robot.robotCount() - 1].setArena(this);
 	}
 	
+	/**
+	 * Overload function to add a robot with specific attributes
+	 * @param x
+	 * @param y
+	 * @param direction
+	 */
 	public void addRobot(int x, int y, Direction direction) {
 		robots[Robot.robotCount()] = new Robot(x, y, direction);
 		robots[Robot.robotCount() - 1].setArena(this);
