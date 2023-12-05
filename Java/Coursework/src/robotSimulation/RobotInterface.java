@@ -55,10 +55,10 @@ public class RobotInterface {
         					break;
         		case 'W' :
         		case 'w' :
-        					System.out.print("Specify Size of X Axis: ");
+        					System.out.print("Specify Size of X Axis (min of 6): ");
         					int x = s.nextInt();
         					s.nextLine();
-        					System.out.print("Specify Size of Y Axis (min of 6): ");
+        					System.out.print("Specify Size of Y Axis: ");
         					int y = s.nextInt();
         					s.nextLine();
         					myArena = new RobotArena(x, y);
